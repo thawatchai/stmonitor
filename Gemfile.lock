@@ -1,0 +1,18 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    macaddr (1.6.1)
+      systemu (~> 2.5.0)
+    nokogiri (1.5.9)
+    ruby-growl (4.0)
+      uuid (~> 2.3, >= 2.3.5)
+    systemu (2.5.2)
+    uuid (2.3.7)
+      macaddr (~> 1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  nokogiri
+  ruby-growl
