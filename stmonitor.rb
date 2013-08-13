@@ -4,6 +4,9 @@ require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
 
+require 'libnotify' if RUBY_PLATFORM =~ /linux/
+
+
 uri = "http://www.settrade.com/C04_01_stock_quote_p1.jsp?txtSymbol=PTTEP"
 
 doc = Nokogiri::HTML(open(uri))
@@ -13,4 +16,8 @@ doc.xpath('//*[@id="cnt"]/div[1]/div[1]/div[5]/div[1]/div[1]/div[1]/div/div/div/
   price = node.content
 end
 
-system "growlnotify -n PTTEP -m #{ price }"
+if RUBY_PLATFORM =~ /linux/
+  Libnotify.show :summary => 'PTTEP', :body => price
+else
+  system "growlnotify -n PTTEP -m #{ price }"
+end
