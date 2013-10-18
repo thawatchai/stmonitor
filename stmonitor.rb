@@ -7,17 +7,24 @@ require 'open-uri'
 require 'libnotify' if RUBY_PLATFORM =~ /linux/
 
 
-uri = "http://www.settrade.com/C04_01_stock_quote_p1.jsp?txtSymbol=PTTEP"
+uri = {
+  pttep: "http://www.settrade.com/C04_01_stock_quote_p1.jsp?txtSymbol=PTTEP",
+  banpu: "http://www.settrade.com/C04_01_stock_quote_p1.jsp?txtSymbol=BANPU"
+}
 
-doc = Nokogiri::HTML(open(uri))
 
-price = 0
-doc.xpath('//*[@id="cnt"]/div[1]/div[1]/div[5]/div[1]/div[1]/div[1]/div/div/div/div/div[4]').each do |node|
-  price = node.content
+price = {}
+uri.each do |k, v|
+  doc = Nokogiri::HTML(open(v))
+  doc.xpath('//*[@id="cnt"]/div[1]/div[1]/div[5]/div[1]/div[1]/div[1]/div/div/div/div/div[4]').each do |node|
+    price[k] = node.content
+  end
 end
 
+msg = "PTTEP: #{ price[:pttep] }\rBANPU: #{ price[:banpu] }"
+
 if RUBY_PLATFORM =~ /linux/
-  Libnotify.show :summary => 'PTTEP', :body => price
+  Libnotify.show :summary => '', :body => msg
 else
-  system "growlnotify -n PTTEP -m #{ price }"
+  system "growlnotify -n SET -m '#{ msg }'"
 end
