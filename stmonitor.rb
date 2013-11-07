@@ -24,7 +24,7 @@ end
 msg = "PTTEP: #{ price[:pttep] }\rBANPU: #{ price[:banpu] }"
 
 if RUBY_PLATFORM =~ /linux/
-  Libnotify.show :summary => '', :body => msg
+  Libnotify.show :body => msg
 else
   # system "growlnotify -n SET -m '#{ msg }'"
   system "terminal-notifier -title 'SET' -message '#{ msg }'"

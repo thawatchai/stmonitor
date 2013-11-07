@@ -1,10 +1,13 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    ffi (1.9.0)
-    libnotify (0.8.1)
+    ffi (1.9.3)
+    libnotify (0.8.2)
       ffi (>= 1.0.11)
-    nokogiri (1.5.9)
+    mini_portile (0.5.2)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
+    terminal-notifier (1.5.1)
 
 PLATFORMS
   ruby
@@ -12,3 +15,4 @@ PLATFORMS
 DEPENDENCIES
   libnotify
   nokogiri
+  terminal-notifier
