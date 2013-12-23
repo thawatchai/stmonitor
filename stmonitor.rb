@@ -21,6 +21,7 @@ end
 if RUBY_PLATFORM =~ /linux/
   Libnotify.show :body => msg
 else
-  # system "growlnotify -n SET -m '#{ msg }'"
-  system "terminal-notifier -title 'SET' -message '#{ msg }'"
+  system "growlnotify -n SET -t SET -m '#{ msg }'"
+  # system "terminal-notifier -title 'SET' -message '#{ msg }'"
+  # system "growly -t 'SET'  'echo \"#{ msg }\"'"
 end
