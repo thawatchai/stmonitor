@@ -6,7 +6,7 @@ require 'open-uri'
 
 require 'libnotify' if RUBY_PLATFORM =~ /linux/
 
-stocks = ['PTTEP', 'PTTE01C1405A', 'KTB']
+stocks = ['PTTEP', 'PTTGC', 'KTB']
 uri = "http://www.settrade.com/C04_01_stock_quote_p1.jsp?txtSymbol="
 
 msg = ''
